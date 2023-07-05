@@ -88,7 +88,7 @@ function handleRemoveCubes() {
     // Wait for 1 second before the computer makes its move
     setTimeout(() => {
       // Computer's turn - generate its move
-      const computerMove = cubesRemaining % 4;
+      const computerMove = Math.min(cubesRemaining, Math.floor(Math.random() * 3) + 1);
 
       // Remove the cubes visually for the computer's move
       for (let i = 0; i < computerMove; i++) {
@@ -123,7 +123,7 @@ function startGame(startingPlayer) {
     // Wait for 1 second before the computer makes its first move
     setTimeout(() => {
       // Computer's turn - generate its move
-      const computerMove = cubesRemaining % 4;
+      const computerMove = Math.min(cubesRemaining, Math.floor(Math.random() * 3) + 1);
 
       // Update the cubes remaining after the computer's move
       cubesRemaining -= computerMove;

@@ -49,42 +49,39 @@ function handleCubeSelection() {
 
 function handleRemoveCubes() {
   // Check if it's the player's turn
-  if (currentPlayer !== 'player') {
-    return;
-  }
+  if (currentPlayer === 'player') {
+    // Check if the player has selected at least 1 cube
+    if (selectedCubes.length === 0) {
+      alert('Please select at least 1 cube to remove.');
+      return;
+    }
 
-  // Check if the player has selected at least 1 cube
-  if (selectedCubes.length === 0) {
-    alert('Please select at least 1 cube to remove.');
-    return;
-  }
+    // Get the number of cubes to remove based on the player's selection
+    const cubesToRemove = selectedCubes.length;
 
-  // Get the number of cubes to remove based on the player's selection
-  const cubesToRemove = selectedCubes.length;
+    // Remove the cubes visually
+    for (let i = 0; i < cubesToRemove; i++) {
+      const cube = selectedCubes[i];
+      cubesContainer.removeChild(cube);
+    }
 
-  // Remove the cubes visually
-  for (let i = 0; i < cubesToRemove; i++) {
-    const cube = selectedCubes[i];
-    cubesContainer.removeChild(cube);
-  }
+    // Update the cubes remaining
+    cubesRemaining -= cubesToRemove;
 
-  // Update the cubes remaining
-  cubesRemaining -= cubesToRemove;
-
-  // Clear the selected cubes array
-  selectedCubes = [];
-
-  // Disable the remove button if no cubes remaining
-  if (cubesRemaining === 0) {
-    removeBtn.disabled = true;
-    alert('You lost! The computer took the last cube.');
-  } else {
-    // Switch to the computer's turn
+    // Clear the selected cubes array
+    selectedCubes = [];
     currentPlayer = 'computer';
-
     // Disable the remove button to prevent further moves by the player
     removeBtn.disabled = true;
 
+    // Check if the player wins after their move
+    if (cubesRemaining === 0) {
+      removeBtn.disabled = true;
+      alert('You won! You took the last cube.');
+    }
+  }
+
+  if (currentPlayer === 'computer') {
     // Wait for 1 second before the computer makes its move
     setTimeout(() => {
       // Computer's turn - generate its move
@@ -105,10 +102,13 @@ function handleRemoveCubes() {
       // Switch back to the player's turn
       currentPlayer = 'player';
 
-      // Check if the player wins after their move
-      if (cubesRemaining === 0) {
+
+      // Check if the computer took the last cube
+      if (cubesRemaining <= 0) {
         removeBtn.disabled = true;
-        alert('You won! You took the last cube.');
+        setTimeout(() => {
+          alert('You lost! The computer took the last cube.');
+        }, 500); // Delay the alert for 0.5 seconds
       }
     }, 1000); // Delay for 1 second (1000 milliseconds)
   }

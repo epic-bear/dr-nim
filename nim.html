@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Nim Game</title>
+  <link rel="stylesheet" type="text/css" href="nim-style.css">
+</head>
+<body>
+<h1>Nim Game</h1>
+<div id="game-container">
+  <div id="cubes-container">
+    <div class="cube"></div>
+    <div class="cube"></div>
+    <div class="cube"></div>
+    <div class="cube"></div>
+    <div class="cube"></div>
+    <div class="cube"></div>
+    <div class="cube"></div>
+    <div class="cube"></div>
+    <div class="cube"></div>
+    <div class="cube"></div>
+    <div class="cube"></div>
+    <div class="cube"></div>
+    <div class="cube"></div>
+    <div class="cube"></div>
+    <div class="cube"></div>
+    <div class="cube"></div>
+    <div class="cube"></div>
+    <div class="cube"></div>
+    <div class="cube"></div>
+    <div class="cube"></div>
+    <div class="cube"></div>
+  </div>
+  <button id="remove-btn" disabled>Remove Cubes</button>
+</div>
+
+<div id="start-popup" class="popup">
+  <h3>Who starts first?</h3>
+  <button onclick="startGame('player')">Player</button>
+  <button onclick="startGame('computer')">Computer</button>
+</div>
+
+<script src="nim.js"></script>
+</body>
+</html>

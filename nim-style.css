@@ -1,0 +1,30 @@
+body {
+    background: khaki;
+}
+#game-container {
+    text-align: center;
+}
+
+#start-popup {
+    background: #4ad46d;
+}
+
+.cube {
+    width: 50px;
+    height: 50px;
+    background-color: #4ad46d;
+    display: inline-block;
+    margin: 5px;
+}
+
+.cube.selected {
+    background-color: #228131;
+}
+
+button {
+    margin-top: 20px;
+}
+
+h1 {
+    text-align: center;
+}

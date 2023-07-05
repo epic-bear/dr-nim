@@ -3,6 +3,22 @@ const cubesContainer = document.getElementById('cubes-container');
 const removeBtn = document.getElementById('remove-btn');
 const startPopup = document.getElementById('start-popup');
 
+// Function to return the cubes and show the start popup
+function returnCubes() {
+  // Clear the cubes container
+  cubesContainer.innerHTML = '';
+
+  // Create and append the cubes back to the container
+  for (let i = 0; i < 21; i++) {
+    const cube = document.createElement('div');
+    cube.classList.add('cube');
+    cubesContainer.appendChild(cube);
+  }
+  setTimeout(() => {
+    startPopup.style.display = 'block';
+  }, 700)
+}
+
 // Number of cubes remaining
 let cubesRemaining = 21;
 
@@ -14,6 +30,8 @@ let selectedCubes = [];
 
 // Track the current player's turn
 let currentPlayer;
+
+startPopup.style.display = 'block';
 
 // Add event listeners to the cubes for selection
 const cubes = cubesContainer.getElementsByClassName('cube');
@@ -78,6 +96,7 @@ function handleRemoveCubes() {
     if (cubesRemaining === 0) {
       removeBtn.disabled = true;
       alert('You won! You took the last cube.');
+      returnCubes();
     }
   }
 
@@ -102,12 +121,12 @@ function handleRemoveCubes() {
       // Switch back to the player's turn
       currentPlayer = 'player';
 
-
       // Check if the computer took the last cube
       if (cubesRemaining <= 0) {
         removeBtn.disabled = true;
         setTimeout(() => {
           alert('You lost! The computer took the last cube.');
+          returnCubes();
         }, 500); // Delay the alert for 0.5 seconds
       }
     }, 1000); // Delay for 1 second (1000 milliseconds)

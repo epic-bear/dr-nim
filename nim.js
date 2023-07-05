@@ -49,7 +49,7 @@ function handleCubeSelection() {
 
 function handleRemoveCubes() {
   // Check if it's the player's turn
-  if (currentPlayer === 'player') {
+  if (currentPlayer !== 'player') {
     return;
   }
 

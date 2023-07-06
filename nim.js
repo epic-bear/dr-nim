@@ -1,6 +1,7 @@
 // Get the required elements from the DOM
 const cubesContainer = document.getElementById('cubes-container');
 const removeBtn = document.getElementById('remove-btn');
+const popupContainer = document.getElementById('popup-background');
 const startPopup = document.getElementById('start-popup');
 
 // Function to return the cubes and show the start popup
@@ -14,16 +15,24 @@ function returnCubes() {
     cube.classList.add('cube');
     cubesContainer.appendChild(cube);
   }
+
+  // Reattach event listeners to the cubes for selection
+  const cubes = cubesContainer.getElementsByClassName('cube');
+  for (let i = 0; i < cubes.length; i++) {
+    cubes[i].addEventListener('click', handleCubeSelection);
+  }
+  cubesRemaining = 21;
+
   setTimeout(() => {
-    startPopup.style.display = 'block';
-  }, 700)
+    popupContainer.style.display = 'block';
+  }, 500)
 }
 
 // Number of cubes remaining
 let cubesRemaining = 21;
 
 // Enable the remove button
-removeBtn.disabled = false;
+removeBtn.disabled = true;
 
 // Track the selected cubes by the player
 let selectedCubes = [];
@@ -31,7 +40,7 @@ let selectedCubes = [];
 // Track the current player's turn
 let currentPlayer;
 
-startPopup.style.display = 'block';
+popupContainer.style.display = 'block';
 
 // Add event listeners to the cubes for selection
 const cubes = cubesContainer.getElementsByClassName('cube');
@@ -104,7 +113,7 @@ function handleRemoveCubes() {
     // Wait for 1 second before the computer makes its move
     setTimeout(() => {
       // Computer's turn - generate its move
-      const computerMove = cubesRemaining % 4;
+      const computerMove =  cubesRemaining === 20 ? Math.floor(Math.random() * 3 + 1) : cubesRemaining % 4;
 
       // Remove the cubes visually for the computer's move
       for (let i = 0; i < computerMove; i++) {
@@ -136,7 +145,7 @@ function handleRemoveCubes() {
 // Function to start the game based on the selected starting player
 function startGame(startingPlayer) {
   currentPlayer = startingPlayer;
-  startPopup.style.display = 'none';
+  popupContainer.style.display = 'none';
 
   if (currentPlayer === 'computer') {
     // Wait for 1 second before the computer makes its first move

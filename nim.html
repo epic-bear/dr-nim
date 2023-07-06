@@ -29,13 +29,15 @@
     <div class="cube"></div>
     <div class="cube"></div>
   </div>
-  <button id="remove-btn" disabled>Remove Cubes</button>
+  <button class="button" id="remove-btn" disabled>Remove</button>
 </div>
 
+<div id = "popup-background">
 <div id="start-popup" class="popup">
   <h3>Who starts first?</h3>
-  <button onclick="startGame('player')">Player</button>
-  <button onclick="startGame('computer')">Computer</button>
+  <button class="button" onclick="startGame('player')">Player</button>
+  <button class="button" onclick="startGame('computer')">Computer</button>
+</div>
 </div>
 
 <script src="nim.js"></script>

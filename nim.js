@@ -118,7 +118,7 @@ function handleRemoveMarbles() {
     // Wait for 1 second before the computer makes its move
     setTimeout(() => {
       // Computer's turn - generate its move
-      const computerMove = marblesRemaining === 20 ? Math.floor(
+      const computerMove = marblesRemaining % 4 === 0 ? Math.floor(
           Math.random() * 3 + 1) : marblesRemaining % 4;
 
       // Remove the cubes visually for the computer's move

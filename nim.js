@@ -108,9 +108,11 @@ function handleRemoveMarbles() {
     // Check if the player wins after their move
     if (marblesRemaining === 0) {
       removeBtn.disabled = true;
-      alert('You won! You took the last marble.');
       currentPlayer = null;
-      returnMarbles();
+      setTimeout(() => {
+        alert('You won! You took the last marble.');
+        returnMarbles();
+      }, 500)
     }
   }
 
@@ -140,9 +142,9 @@ function handleRemoveMarbles() {
       // Check if the computer took the last cube
       if (marblesRemaining <= 0) {
         removeBtn.disabled = true;
+        currentPlayer = null;
         setTimeout(() => {
           alert('You lost! The computer took the last marble.');
-          currentPlayer = null;
           returnMarbles();
         }, 500);
       }

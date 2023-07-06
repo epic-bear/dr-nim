@@ -10,7 +10,7 @@ function updateCounter() {
 function returnMarbles() {
   // Clear the cubes container
   marblesContainer.innerHTML = '';
-
+  currentPlayer = null;
   // Create and append the cubes back to the container
   for (let i = 0; i < 21; i++) {
     const marble = document.createElement('div');
@@ -33,7 +33,6 @@ function returnMarbles() {
 
 // Number of cubes remaining
 let marblesRemaining = 21;
-
 updateCounter();
 
 // Enable the remove button
@@ -110,6 +109,7 @@ function handleRemoveMarbles() {
     if (marblesRemaining === 0) {
       removeBtn.disabled = true;
       alert('You won! You took the last marble.');
+      currentPlayer = null;
       returnMarbles();
     }
   }
@@ -142,6 +142,7 @@ function handleRemoveMarbles() {
         removeBtn.disabled = true;
         setTimeout(() => {
           alert('You lost! The computer took the last marble.');
+          currentPlayer = null;
           returnMarbles();
         }, 500);
       }
